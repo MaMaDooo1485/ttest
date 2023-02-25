@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="allbook"></div>
+
+    <script>
+        let allbok = document.getElementById('allbook')
+        let book = JSON.parse(localStorage.getItem("Book"))
+        let filter = book.filter(function(book){
+            if(book.mojod == false){
+return book            }
+        })
+        filter.forEach(function(index){
+            allbok.insertAdjacentHTML('afterbegin' , '<div id="books">'+
+            '<img src="'+index.img+'" alt="">'+
+            '<p>'+index.name+'</p>'+
+            '<p>'+index.Author+'</p>'+
+            
+            
+            '</div>')
+        })
+
+
+    </script>
+</body>
+</html>

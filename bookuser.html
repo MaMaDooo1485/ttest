@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <ul id="menu">
+        <li id="profile" >پروفایل</li> 
+        <a >چارت کتاب ها</a>
+        <a id="amanat">امانت ها</a>
+        <a href="login.html"> خروج از حساب</a>
+     </ul>
+     <div id="entersubject">
+        <select  id="select">
+        
+        <option value="wich" id="wich">نوع کتاب خود را انتخاب کنید</option>
+        <option value="all" id="all">تمام کتاب ها</option>
+        <option value="dini" id="dini">مذهبی</option>
+        <option value="roman" id="roman">رمان</option>
+        <option value="sher" id="sher">شعر</option>
+        <option value="sad" id="sad">غمگین</option>
+        
+        </select>
+             </div>
+        <div id="allbook"></div>
+        <div id="dinibook"></div>
+        <div id="romanbook"></div>
+        <div id="sherbook"></div>
+        <div id="sadbook"></div>
+</body>
+<script>
+
+
+
+
+
+let indexsad=0;
+    let indexAll=0;
+    let indexdini=0;
+    let indexroman = 0;
+    let indexsher = 0;
+    let sad = document.getElementById('sadbook')
+    let sher = document.getElementById('sherbook')
+    let roman = document.getElementById('romanbook')
+    let dini = document.getElementById('dinibook')
+         let books
+    books=JSON.parse(localStorage.getItem("Book"))
+let select = document.getElementById('select')
+let allbok = document.getElementById('allbook')
+select.addEventListener('change' , ()=>{
+    if(indexAll==0 && select.value == 'all'){
+        indexAll++
+        dini.style.display='none'
+        roman.style.display='none'
+        allbok.style.display='block'
+        books.forEach(function(book){
+allbok.insertAdjacentHTML('afterbegin' , '<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="request('+book.id+')">درخواست امانت</button>'+
+            
+            
+            '</div>')
+
+        })
+
+    
+}
+ if(indexAll <= 1 && select.value == "all"){
+    dini.style.display='none'
+        allbok.style.display='block'
+        roman.style.display='none'
+        sher.style.display='none'
+
+
+}
+if(select.value=='dini' &&indexdini==0 ){
+    allbok.style.display='none'
+    roman.style.display='none'
+    sher.style.display='none'
+
+    dini.style.display='block'
+    indexdini++
+    books.filter(function(book){
+
+        if(book.dastebandi == "dini"){
+            dini.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="request('+book.id+')">درخواست امانت</button>'+
+            
+            
+            '</div>')
+
+        }
+    })
+}
+else if(indexdini == 1 && select.value =='dini'){
+    allbok.style.display='none'
+    roman.style.display='none'
+    sher.style.display='none'
+    sad.style.display='none'
+
+
+    dini.style.display='block'
+}
+if(select.value=='roman' && indexroman==0){
+indexroman++;
+allbok.style.display='none'
+dini.style.display='none'
+sher.style.display='none'
+sad.style.display='none'
+
+
+roman.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "roman"){
+        roman.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="request('+book.id+')">درخواست امانت</button>'+
+            
+            
+            '</div>')    }
+})
+
+}
+else if (indexroman == 1&&select.value=="roman"){
+    allbok.style.display='none'
+dini.style.display='none'
+sher.style.display='none'
+sad.style.display='none'
+
+roman.style.display='block'
+}
+if(indexsher==0&&select.value=="sher"){
+indexsher++
+allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sad.style.display='none'
+
+sher.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "sher"){
+        sher.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="request('+book.id+')">درخواست امانت</button>'+
+            
+            
+            '</div>')    }
+})
+
+}
+else if (indexsher==1&&select.value=='sher'){
+ allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sad.style.display='none'
+
+sher.style.display='block'
+}
+if(select.value == 'sad' && indexsad==0){
+    indexsad++
+    allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "sad"){
+        sad.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="request('+book.id+')">درخواست امانت</button>'+
+            
+            
+            '</div>')    }
+})
+}
+else if (indexsad==1&&select.value =='sad'){
+    dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='block'
+}
+if(select.value=='wich'){
+    allbok.style.display='none'
+    dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='none' 
+}
+})
+</script>
+<script>
+    let ii=[]
+    let profile = document.getElementById('profile')
+    let s = location.search
+    let u = new URLSearchParams(s)
+    let e = u.get('username')
+    profile.addEventListener('click' , ()=>{
+       location.href="profile.html?username="+e
+    })
+    function request(id){
+        let book = JSON.parse(localStorage.getItem("Book"))
+      let find =  book.findIndex(function(index){
+            if(index.id == id){
+                return index
+            }
+        })
+        if(book[find].mojod== true)
+        {
+        let books = {name:e , id , how:false }
+        localStorage.setItem(id+e+"false" , JSON.stringify(books))
+         ii =JSON.parse(localStorage.getItem(id+e+"false" ))
+        localStorage.setItem("Requst" , "requst")}
+        else{
+            alert("متاسفانه کتاب مورد نظر موجود نیست")
+        }
+        
+    }
+    let amant = document.getElementById('amanat')
+  
+amant.addEventListener('click' , ()=>{
+    location.href="امانت ها.html?username="+e
+})
+
+</script>
+</html>

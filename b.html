@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+         let books=[
+    
+    {name:'سگ ولگرد',Author:"صادق هدایت",id:1,img:'imgbook/1.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:'بوف کور ',Author:"صادق هدایت",id:2,img:'imgbook/2.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' گفتو گو با صادق هدایت ',Author:" یوسف یزدانی",id:3,img:'imgbook/3.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' خودکشی صادق هدایت',Author:"  اسماعیل جمشیدی",id:4,img:'imgbook/4.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' دیوار',Author:" صادق هدایت",id:5,img:'imgbook/5.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' سه قطره خون',Author:" صادق هدایت",id:6,img:'imgbook/8.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:'گمان شکن ',Author:" صادق هدایت",id:7,img:'imgbook/9.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' داش آکل ',Author:" صادق هدایت",id:8,img:'imgbook/11.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:'کلاوس واگنیاخ',Author:"  فرانتس کافکا",id:9,img:'imgbook/13.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' مسخ',Author:"  فرانتس کافکا",id:10,img:'imgbook/14.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' درمستعمره مجازات',Author:"  فرانتس کافکا",id:11,img:'imgbook/16.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' محاکمه',Author:"  فرانتس کافکا",id:12,img:'imgbook/18.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' قصر',Author:"  فرانتس کافکا",id:13,img:'imgbook/19.jpg',dastebandi:"sad",mojod:true,mohbobiat:0},
+    {name:' خدا در زندگی',Author:"مرتضی مطهری",id:14,img:'imgbook/21.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'قران و مثنوی',Author:"مرتضی مطهری",id:15,img:'imgbook/22.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'امام مهدی',Author:"مرتضی مطهری",id:16,img:'imgbook/23.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:' جاذبه و دافعه علی',Author:"محمد صادقی",id:17,img:'imgbook/25.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'اسلامی برای نوجوانان',Author:"محمد صادقی",id:18,img:'imgbook/25.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'طنابی از آتش',Author:" علی محمدی",id:19,img:'imgbook/28.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'سفرروح',Author:" حسیام سجادی",id:20,img:'imgbook/30.jpg',dastebandi:"dini",mojod:true,mohbobiat:0},
+    {name:'برباد رفته',Author:"مارکارت میچل",id:21,img:'imgbook/31.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:' قلعه حیوانات',Author:"جورج اورول",id:22,img:'imgbook/32.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'ملکه سورخ  پوش',Author:"جورج اورول",id:23,img:'imgbook/33.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'چشمهایش',Author:" بزرگ علوی",id:24,img:'imgbook/34.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'هری پاتر',Author:" اسلاویک مسیح",id:25,img:'imgbook/35.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'صدسال تنهایی',Author:"گایریل",id:26,img:'imgbook/36.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'اتش بدون دود',Author:"گایریل",id:27,img:'imgbook/37.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:' دریک جنگل تاریک تاریک',Author:"روث ور",id:28,img:'imgbook/38.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'ارزوهای بزرگ',Author:"چارلزدیکنز",id:29,img:'imgbook/39.jpg',dastebandi:"roman",mojod:true,mohbobiat:0},
+    {name:'پروین اعتصامی',Author:"پروین اعتصامی",id:30,img:'imgbook/41.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:'پابلو نرودا',Author:" رضا محمدی",id:31,img:'imgbook/42.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:' فردوسی',Author:" فردوسی",id:32,img:'imgbook/43.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:' نیما یوشیج',Author:" نیما یوشیج",id:33,img:'imgbook/44.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:' مثل خون در رگ های من',Author:"شاملو ",id:34,img:'imgbook/46.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:'دعا کنید مریض بشم',Author:"شاملو ",id:35,img:'imgbook/47.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:'در خاطر منی',Author:"علی شریعتی ",id:36,img:'imgbook/48.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},
+    {name:'ایرج میرزا',Author:"ایرج میرزا",id:37,img:'imgbook/49.jpg',dastebandi:"sher",mojod:true,mohbobiat:0},]
+    
+    
+    
+    
+    
+
+    
+
+    const Book1 =[]
+   for(let i = 0 ; i < books.length ; i++){
+    function Book(name , Author , id, img,dastebandi,mojod,mohbobiat) {
+    this.name = name
+    this.Author =Author
+    this.id=id
+    this.img=img
+    this.dastebandi =dastebandi
+    this.mojod=mojod
+    this.mohbobiat = mohbobiat
+}
+
+Book1[i] =new Book(books[i].name,books[i].Author,books[i].id,books[i].img,books[i].dastebandi,books[i].mojod,books[i].mohbobiat);
+}
+
+localStorage.setItem("Book" , JSON.stringify(Book1))
+location.replace('login.html')
+    </script>
+</body>
+</html>

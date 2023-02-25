@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="menu">
+        <a href="ثبتنام کاربر.html">ثبت نام کاربر</a>
+        <a href="login.html">خروج از حساب </a>
+        <a href="اطلاعات کاربران.html">اطلاعات کاربران</a>
+        <a href="mojod.html">مشاهده کتاب های موجود</a>
+        <a href="namojod.html">کتاب های ناموجود</a>   
+        <a href="درخواست ها.html">درخواست ها</a>   
+        <a href="chart.html">بازدید کتاب ها</a>  
+        <button onclick="addbooka()">اضافه کردن کتاب</button> 
+     </ul>
+     <div id="entersubject">
+<select  id="select">
+
+<option value="wich" id="wich">نوع کتاب خود را انتخاب کنید</option>
+<option value="all" id="all">تمام کتاب ها</option>
+<option value="dini" id="dini">مذهبی</option>
+<option value="roman" id="roman">رمان</option>
+<option value="sher" id="sher">شعر</option>
+<option value="sad" id="sad">غمگین</option>
+
+</select>
+     </div>
+<div id="allbook"></div>
+<div id="dinibook"></div>
+<div id="romanbook"></div>
+<div id="sherbook"></div>
+<div id="sadbook"></div>
+</body>
+<script>
+    let indexsad=0;
+    let indexAll=0;
+    let indexdini=0;
+    let indexroman = 0;
+    let indexsher = 0;
+    let sad = document.getElementById('sadbook')
+    let sher = document.getElementById('sherbook')
+    let roman = document.getElementById('romanbook')
+    let dini = document.getElementById('dinibook')
+      let books
+    books=JSON.parse(localStorage.getItem("Book"))
+let select = document.getElementById('select')
+let allbok = document.getElementById('allbook')
+select.addEventListener('change' , ()=>{
+    if(indexAll==0 && select.value == 'all'){
+        indexAll++
+        dini.style.display='none'
+        roman.style.display='none'
+        allbok.style.display='block'
+        books.forEach(function(book){
+allbok.insertAdjacentHTML('afterbegin' , '<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="addbook('+book.id+')">اضافه کردن</button>'+
+            '<button onclick="editbook('+book.id+')">ویرایش کتاب</button>'+
+
+            '<button onclick="dele('+book.id+')"> حذف</button>'+
+
+            
+            '</div>')
+
+        })
+
+    
+}
+ if(indexAll <= 1 && select.value == "all"){
+    dini.style.display='none'
+        allbok.style.display='block'
+        roman.style.display='none'
+        sher.style.display='none'
+
+
+}
+if(select.value=='dini' &&indexdini==0 ){
+    allbok.style.display='none'
+    roman.style.display='none'
+    sher.style.display='none'
+
+    dini.style.display='block'
+    indexdini++
+    books.filter(function(book){
+
+        if(book.dastebandi == "dini"){
+            dini.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="addbook('+book.id+')">اضافه کردن</button>'+
+            '<button onclick="editbook('+book.id+')">ویرایش کتاب</button>'+
+
+            '<button onclick="dele('+book.id+')"> حذف</button>'+
+
+            
+            '</div>')
+
+        }
+    })
+}
+else if(indexdini == 1 && select.value =='dini'){
+    allbok.style.display='none'
+    roman.style.display='none'
+    sher.style.display='none'
+    sad.style.display='none'
+
+
+    dini.style.display='block'
+}
+if(select.value=='roman' && indexroman==0){
+indexroman++;
+allbok.style.display='none'
+dini.style.display='none'
+sher.style.display='none'
+sad.style.display='none'
+
+
+roman.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "roman"){
+        roman.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="addbook('+book.id+')">اضافه کردن</button>'+
+            '<button onclick="editbook('+book.id+')">ویرایش کتاب</button>'+
+
+            '<button onclick="dele('+book.id+')"> حذف</button>'+
+
+            
+            '</div>')    }
+})
+
+}
+else if (indexroman == 1&&select.value=="roman"){
+    allbok.style.display='none'
+dini.style.display='none'
+sher.style.display='none'
+sad.style.display='none'
+
+roman.style.display='block'
+}
+if(indexsher==0&&select.value=="sher"){
+indexsher++
+allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sad.style.display='none'
+
+sher.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "sher"){
+        sher.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="addbook('+book.id+')">اضافه کردن</button>'+
+            '<button onclick="editbook('+book.id+')">ویرایش کتاب</button>'+
+            '<button onclick="dele('+book.id+')"> حذف</button>'+
+
+            
+            
+            '</div>')    }
+})
+
+}
+else if (indexsher==1&&select.value=='sher'){
+ allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sad.style.display='none'
+
+sher.style.display='block'
+}
+if(select.value == 'sad' && indexsad==0){
+    indexsad++
+    allbok.style.display='none'
+dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='block'
+books.filter(function(book){
+    if(book.dastebandi == "sad"){
+        sad.insertAdjacentHTML('afterbegin','<div id="books">'+
+            '<img src="'+book.img+'" alt="">'+
+            '<p>'+book.name+'</p>'+
+            '<p>'+book.Author+'</p>'+
+            '<button onclick="addbook('+book.id+')">اضافه کردن</button>'+
+            '<button onclick="editbook('+book.id+')">ویرایش کتاب</button>'+
+            '<button onclick="dele('+book.id+')"> حذف</button>'+
+
+            
+            
+            '</div>')    }
+})
+}
+else if (indexsad==1&&select.value =='sad'){
+    dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='block'
+}
+if(select.value=='wich'){
+    allbok.style.display='none'
+    dini.style.display='none'
+roman.style.display='none'
+sher.style.display='none'
+sad.style.display='none' 
+}
+})
+// let user = []
+// for(let i =0;i <= localStorage.length;i++){
+
+// user[i] = localStorage.key(i)
+   
+// }
+
+// // for(let i =0 ; i < user.length;i++){
+// // if(user[i].includes('1')||user[i].includes(2)||user[i].includes(3)||user[i].includes(4)||user[i].includes(5)||user[i].includes(6)||user[i].includes(7)||user[i].includes(8)||user[i].includes(9)){
+// // }
+
+// // }
+// let users1=[]
+// let users
+// let filter = user.filter(function(index , l){
+
+//     if(index!=null){
+    
+//         if(index.includes('1')||index.includes(2)||index.includes(3)||index.includes(4)||index.includes(5)||index.includes(6)||index.includes(7)||index.includes(8)||index.includes(9)){
+//             users1 = index.split(" ",50)
+// users.push(users1)
+//         }
+//     }
+// })
+// console.log(users);
+
+
+// console.log(userss[1]);
+function addbook(id){
+    let bookw = JSON.parse(localStorage.getItem("Book"))
+      let find1 =  bookw.findIndex(function(index){
+            if(index.id == id){
+                return index
+            }
+        })
+        if(bookw[find1].mojod== true){
+            let bookadd =prompt("نام کاربری را وارد کنید")
+// let find = books.find(function(index){
+//     if(index.id== id){
+//         return index
+//     }
+// })
+// console.log(find);
+// for(let i =0;i!= localStorage.length;i++){
+// if(bookadd == localStorage.key(i)){
+// localStorage.setItem(id+bookadd,JSON.stringify(find))
+
+    
+// }
+//}
+function book(name , id){
+this.name = name
+this.id = id
+}
+const end = new book(bookadd , id)
+localStorage.setItem(id+bookadd , JSON.stringify(end))
+let books = JSON.parse(localStorage.getItem("Book"))
+let find = books.findIndex(function(f){
+    if(f.id == id){
+return f
+    }
+})
+let edit ={name:books[find].name,Author:books[find].Author,id:books[find].id,img:books[find].img,dastebandi:books[find].dastebandi,mojod:false , mohbobiat:Number(books[find].mohbobiat)+1}
+
+books.splice(find,1)
+books.push(edit)
+localStorage.removeItem("Book")
+localStorage.setItem("Book" , JSON.stringify(books))
+
+// let books = {name:bookadd , id}
+// localStorage.setItem(id+bookadd , JSON.stringify(books))
+// }
+
+    }
+        
+        
+        else{
+            alert("متاسفانه کتاب مورد نظر موجود نیست")
+        }
+
+}
+if(localStorage.getItem('Requst') == "requst"){
+    alert("شما درخواست دارید")
+
+localStorage.removeItem('Requst')
+}
+function editbook(id){
+    let books = JSON.parse(localStorage.getItem("Book"))
+ let find = books.findIndex(function(findb){
+    if(findb.id==id){
+        return books
+    }
+ })
+ let nameedt = prompt("نام جدید را وارد کنید")
+ let authoredit = prompt("نویسنده جدید را وارد کنید")
+ let imgedit = prompt("عکس جدید را وارد کنید")
+let dedit = prompt("نوع دسته بندی را وارد کنید")
+function editbook(name,Author , id, img,dastebandi,mojod) {
+ this.name = name
+ this.Author = Author
+ this.id = id
+ this.img = img
+ this.dastebandi = dastebandi
+ this.mojod = mojod
+}
+
+const editbook1 = new editbook(nameedt,authoredit,books[find].id ,imgedit,dedit,books[find].mojod);
+localStorage.setItem("Book", JSON.stringify(editbook1))
+ //let editbook = {name:nameedt, Author: authoredit,  id: , img:imgedit, dastebandi:dedit, mojod: }
+ books.splice(find,1)
+ books.push(editbook1)
+ localStorage.removeItem("Book")
+localStorage.setItem("Book" , JSON.stringify(books))
+location.href = location.href
+}
+function dele(id){
+    let books = JSON.parse(localStorage.getItem("Book"))
+ let find = books.findIndex(function(findb){
+    if(findb.id==id){
+        return books
+    }
+ }) 
+ books.splice(find,1)
+localStorage.removeItem("Book")
+localStorage.setItem("Book" , JSON.stringify(books))
+location.href = location.href
+}
+function addbooka(){
+    let bname = prompt("نام کتاب")
+    let bauthor = prompt("نویسنده کتاب ")
+    let img = prompt(" عکس کتاب")
+    let dastebandi = prompt("نوع کتاب کتاب")
+    let id= Math.floor(Math.random() * 10000)
+
+let book =    {name:bname,Author:bauthor,id:id,img:img,dastebandi:dastebandi,mojod:true,mohbobiat:0}
+let local = JSON.parse(localStorage.getItem("Book"))
+local.push(book)
+localStorage.removeItem("Book")
+localStorage.setItem("Book" , JSON.stringify(local))
+location.href = location.href
+}
+
+</script>
+</html>
